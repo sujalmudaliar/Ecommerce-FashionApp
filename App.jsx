@@ -1,9 +1,15 @@
 import { StyleSheet } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
+import { enableScreens } from 'react-native-screens'
+
+enableScreens()
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Homescreen from './src/screens/Homescreen'
+import HomeStack from './src/screens/HomeStack'
+import ReorderScreen from './src/screens/ReorderScreen'
+import CartScreen from './src/screens/CartScreen'
+import AccountScreen from './src/screens/AccountScreen'
 
 const Tab = createBottomTabNavigator();
 const App = () => {
@@ -34,7 +40,7 @@ const App = () => {
 
             return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#e83d0eff',
+          tabBarActiveTintColor: '#eb7474',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: {
             paddingBottom: 5,
@@ -44,28 +50,28 @@ const App = () => {
       >
                 <Tab.Screen 
           name="HOME" 
-          component={Homescreen}
+          component={HomeStack}
           options={{
             headerShown: false
           }} 
         />
         <Tab.Screen 
           name="REORDER" 
-          component={Homescreen}
+          component={ReorderScreen}
           options={{
             headerShown: false
           }} 
         />
         <Tab.Screen 
           name="CART" 
-          component={Homescreen}
+          component={CartScreen}
           options={{
             headerShown: false
           }} 
         />
         <Tab.Screen 
           name="ACCOUNT" 
-          component={Homescreen}
+          component={AccountScreen}
           options={{
             headerShown: false
           }} 
