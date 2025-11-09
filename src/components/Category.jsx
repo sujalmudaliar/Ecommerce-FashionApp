@@ -4,19 +4,8 @@ import React from 'react'
 const Category = ({ item, selectedCategory, setSelectedCategory, navigation }) => {
     const handlePress = () => {
         setSelectedCategory(item);
-        switch(item) {
-            case 'Womens':
-                navigation.navigate('WomensProducts');
-                break;
-            case 'Mens':
-                navigation.navigate('MensProducts');
-                break;
-            case 'Trending Now':
-                navigation.navigate('HomeMain'); // For now, stays on home
-                break;
-            default:
-                setSelectedCategory(item);
-        }
+        // Just update the selected category for now
+        // Navigation to specific screens will be added later
     };
 
     return (

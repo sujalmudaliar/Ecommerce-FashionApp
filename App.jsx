@@ -5,13 +5,26 @@ import { enableScreens } from 'react-native-screens'
 
 enableScreens()
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import HomeStack from './src/screens/HomeStack'
+import Homescreen from './src/screens/Homescreen'
 import ReorderScreen from './src/screens/ReorderScreen'
 import CartScreen from './src/screens/CartScreen'
 import AccountScreen from './src/screens/AccountScreen'
+import ProductDetailScreen from './src/screens/ProductDetailScreen'
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Homescreen">
+      <Stack.Screen name="Homescreen" component={Homescreen} options={{ headerShown: false }} />
+      <Stack.Screen name="ProductDetail" component={ProductDetailScreen} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
+};
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -48,36 +61,36 @@ const App = () => {
           }
         })}
       >
-                <Tab.Screen 
-          name="HOME" 
+        <Tab.Screen
+          name="HOME"
           component={HomeStack}
           options={{
             headerShown: false
-          }} 
+          }}
         />
-        <Tab.Screen 
-          name="REORDER" 
+        <Tab.Screen
+          name="REORDER"
           component={ReorderScreen}
           options={{
             headerShown: false
-          }} 
+          }}
         />
-        <Tab.Screen 
-          name="CART" 
+        <Tab.Screen
+          name="CART"
           component={CartScreen}
           options={{
             headerShown: false
-          }} 
+          }}
         />
-        <Tab.Screen 
-          name="ACCOUNT" 
+        <Tab.Screen
+          name="ACCOUNT"
           component={AccountScreen}
           options={{
             headerShown: false
-          }} 
+          }}
         />
       </Tab.Navigator>
-       
+
     </NavigationContainer>
   )
 }

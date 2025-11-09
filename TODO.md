@@ -1,0 +1,4 @@
+- [x] Fix trailing comma in useState import in ProductCard.jsx
+- [x] Fix mismatched closing tag for TouchableOpacity in ProductCard.jsx
+- [x] Wrap inputContainer in Fragment and move to ListHeaderComponent in products FlatList
+- [x] Fix renderItem in products FlatList to render ProductCard properly

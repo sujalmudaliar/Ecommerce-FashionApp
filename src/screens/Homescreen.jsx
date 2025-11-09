@@ -4,14 +4,34 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import LinearGradient from 'react-native-linear-gradient'
 import Header from '../components/Header'
 import Category from '../components/Category'
-import Carousel from '../components/Carousel'
-import { useState } from 'react'
 import ProductCard from '../components/ProductCard'
+import data from '../data/data'
+import { useState } from 'react'
 
-const catagories = ['Trending Now', 'New Arrivals', 'Best Sellers', 'Mens', 'Womens', 'Kids', 'Accessories', 'Sale']
+
+const catagories = ['Trending Now', 'Best Sellers', 'Mens', 'Womens']
 
 const Homescreen = ({ navigation }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const [products, setProducts] = useState(data);
+
+  const [selectedCategory, setSelectedCategory] = useState("Mens");
+
+  // const [likedItems, setLikedItems] = useState(new Array(data.length).fill(false));
+
+  const handleLiked = (item)=>{
+    const newProducts= products.map((prod)=>{
+      if(prod.id ===item.id){
+        return{
+          ...prod,
+          isLiked:  !prod.isLiked
+        }
+      }
+      return prod;
+    })
+    setProducts(newProducts);
+  }
+
 
   return (
     <View style={styles.container}>
@@ -21,61 +41,57 @@ const Homescreen = ({ navigation }) => {
         colors={['#FDF0F3', '#FFFBFC']}
         style={styles.contentContainer}
       >
-        <Text style={styles.title}>Match Your Styles</Text>
-        <View style={styles.searchBarWrapper}>
-          <View style={styles.inputContainer}>
-            <MaterialCommunityIcons name="magnify" size={24} color="#eb7474" />
-            <TextInput
-              style={styles.input}
-              placeholder="Search for products"
-              placeholderTextColor="#b0b0b0"
-            />
-          </View>
-        </View>
-        <Carousel />
-        <FlatList
-          horizontal
-          data={catagories}
-          renderItem={({ item }) => (
-            <Category
-              item={item}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              navigation={navigation}
-            />
-          )}
-          keyExtractor={(item) => item}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoryList}
-        />
+        
+        
+       
 
-        <View style={styles.productsContainer}>
-          <FlatList
-            data={[
-              { id: '1', image: require('../assets/buisnessWoman.jpg'), title: 'Business Attire', price: '$129.99' },
-              { id: '2', image: require('../assets/hatWoman.jpg'), title: 'Summer Collection', price: '$89.99' },
-              { id: '3', image: require('../assets/redWomen.jpg'), title: 'Evening Wear', price: '$159.99' },
-              { id: '4', image: require('../assets/yellowWoman.jpg'), title: 'Casual Style', price: '$79.99' },
-              { id: '5', image: require('../assets/youngWoman.jpg'), title: 'Urban Fashion', price: '$99.99' },
-              { id: '6', image: require('../assets/womanJersey.jpg'), title: 'Soccer Jersey', price: '$20.5' },
-              {}
-            ]}
-            renderItem={({ item }) => (
-              <ProductCard
-                image={item.image}
-                title={item.title}
-                price={item.price}
-              />
-            )}
-            keyExtractor={item => item.id}
-            numColumns={2}
-            columnWrapperStyle={styles.productRow}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.productGrid}
-            ListHeaderComponent={<View style={{ height: 0 }} />}
-            ListFooterComponent={<View style={{ height: 20 }} />}
+
+
+<FlatList
+  numColumns={2}
+  ListHeaderComponent={
+    <>
+    <Text style={styles.title}>Match Your Styles</Text>
+      <View style={styles.searchBarWrapper}>
+        <View style={styles.inputContainer}>
+          <MaterialCommunityIcons name="magnify" size={24} color="#eb7474" />
+          <TextInput
+            style={styles.input}
+            placeholder="Search for products"
+            placeholderTextColor="#b0b0b0"
           />
         </View>
+      </View>
+
+      <FlatList
+        horizontal
+        data={catagories}
+        renderItem={({ item }) => (
+          <Category
+            item={item}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            navigation={navigation}
+          />
+        )}
+        keyExtractor={(item) => item}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoryList}
+      />
+    </>
+  }
+  data={products}
+  renderItem={({ item,index }) => <ProductCard item={item} handleLiked={handleLiked} navigation={navigation} />}
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={{ paddingBottom: 100 }}
+  // keyExtractor={(item, index) => index.toString()}
+/>
+          {/* <View style={{ flexDirection: "row" }}
+         >
+          <ProductCard />
+        <ProductCard />
+         </View> */}
+        
       </LinearGradient>
     </View>
   );
@@ -87,9 +103,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    minHeight: '100%',
+    
   },
   contentContainer: {
-    flex: 1,
     paddingHorizontal: 16,
     paddingTop: 8,
   },
@@ -137,13 +154,12 @@ const styles = StyleSheet.create({
   productsContainer: {
     flex: 1,
     backgroundColor: 'transparent',
-    marginTop: -8,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  productGrid: {
-    paddingHorizontal: 12,
-  },
-  productRow: {
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
+  comingSoon: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center'
+  }
 });
