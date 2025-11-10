@@ -36,11 +36,13 @@ const Homescreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <Header />
+    
       <LinearGradient
         colors={['#FDF0F3', '#FFFBFC']}
         style={styles.contentContainer}
+        
       >
+          <Header />
         
         
        

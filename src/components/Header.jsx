@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: 32,
     position: 'absolute',
     right: 16,
-    top: 45,
+    top: 70,
   },
   menuIconContainer: {
     backgroundColor: '#fff',
