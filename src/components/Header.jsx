@@ -1,17 +1,27 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
+const Header = ({isCart}) => {
 
-const Header = () => {
+  const navigation = useNavigation();
   return (
     <View>
-      <SafeAreaView style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-        <View style={styles.menuIconContainer}>
-          <View styles={styles.userIconContainer}>
+      <SafeAreaView style={{ flexDirection: 'row', alignItems: 'center', }}>
+        <TouchableOpacity onPress={()=> navigation.navigate ("HOME")} style={styles.menuIconContainer}>
+          {
+            isCart ? <Ionicons name="chevron-back" size={24} color="#eb7474" />
+            :
             <Image style={styles.menu} source={require('../assets/menuIcon.png')} />
+          }
+        </TouchableOpacity>
+        {
+          isCart &&
+          <View style={styles.cartTextContainer}>
+            <Text style={styles.myCart}>My Cart</Text>
           </View>
-        </View>
-
+        }
 
         <Image style={styles.userIcon} source={require('../assets/userIcon.png')} />
 
@@ -27,8 +37,6 @@ const styles = StyleSheet.create({
   menu: {
     width: 24,
     height: 24,
-    marginLeft: 16,
-    marginTop: 16,
   },
   userIcon: {
     width: 32,
@@ -38,11 +46,18 @@ const styles = StyleSheet.create({
     top: 70,
   },
   menuIconContainer: {
-    backgroundColor: '#fff',
     height: 44,
     width: 44,
     borderRadius: 22,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  myCart:{
+    fontSize: 28,
+    fontWeight: '700',
+  },
+  cartTextContainer: {
+    flex: 1,
     alignItems: 'center',
   }
 

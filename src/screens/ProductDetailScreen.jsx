@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import LinearGradient from 'react-native-linear-gradient'
 import Header from '../components/Header'
+import { useCart } from '../context/CartContext'
+import Toast from 'react-native-toast-message'
 
 // const ProductDetailScreen = ({ navigation }) => {
 //   const route = useRoute()
@@ -10,51 +12,81 @@ import Header from '../components/Header'
 const sizes = ['S', 'M', 'L', 'XL']
 const colorArray = ["#91A1B0", "#e35252ff", "#061743ff", "#ebb27dff", "#26e787f7"]
 const ProductDetailScreen = () => {
+  const route = useRoute();
+  const { item } = route.params;
+  const { addToCart } = useCart();
+
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.contentContainer}>
-      {/* Product details content will go here */}
-      <View style={styles.headerContainer}>
-        <Header />
-      </View>
-      <Image style={styles.coverImage} source={require('../assets/bluesaree.jpg')}></Image>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.title}>Royal Indigo Saree</Text>
-        <Text style={[styles.title, styles.price]}>$69.99</Text>
-      </View>
-      {/*Size container*/}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Product details content will go here */}
+        <View style={styles.headerContainer}>
+          <Header />
+        </View>
+        <Image style={styles.coverImage} source={item.image}></Image>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={[styles.title, styles.price]}>${item.price}</Text>
+        </View>
+        {/*Size container*/}
 
-      <Text style={[styles.title, styles.sizeText]}>
-        Size
-      </Text>
-      <View style={styles.sizeContainer}>
-        {
-          sizes.map((size) => {
-            return (
-                <TouchableOpacity style={[styles.sizeValueContainer, selectedSize == size && styles.selectedSize]} onPress={()=>{
+        <Text style={[styles.title, styles.sizeText]}>
+          Size
+        </Text>
+        <View style={styles.sizeContainer}>
+          {
+            sizes.map((size) => {
+              return (
+                <TouchableOpacity style={[styles.sizeValueContainer, selectedSize == size && styles.selectedSize]} onPress={() => {
                   setSelectedSize(size)
                 }}>
-                   <Text style={[styles.sizeValue, selectedSize == size && {color:'#eb7474'}]}> {size} </Text>
-                   </TouchableOpacity>
+                  <Text style={[styles.sizeValue, selectedSize == size && { color: '#eb7474' }]}> {size} </Text>
+                </TouchableOpacity>
 
-            )
-          })
-        }
-      </View>
-      <Text style={[styles.title, styles.colorText]} >Colors</Text>
-      <View style={styles.colorContainer}>
-        {
-          colorArray.map((color) => {
-            return (
-              <TouchableOpacity style={[styles.sizeValueContainer, { backgroundColor: color }, selectedColor == color && styles.selectedColor]} onPress={() => {
-                setSelectedColor(color)
-              }}>
-              </TouchableOpacity>
-            )
-          })
-        }
-      </View>
+              )
+            })
+          }
+        </View>
+        <Text style={[styles.title, styles.colorText]} >Colors</Text>
+        <View style={styles.colorContainer}>
+
+          {
+            colorArray.map((color) => {
+              return (
+                <TouchableOpacity style={[styles.sizeValueContainer, { backgroundColor: color }, selectedColor == color && styles.selectedColor]} onPress={() => {
+                  setSelectedColor(color)
+                }}>
+                </TouchableOpacity>
+              )
+            })
+          }
+        </View>
+        {/* Add to cart button */}
+        <TouchableOpacity style={styles.button} onPress={() => {
+          if (selectedSize && selectedColor) {
+            addToCart(item, selectedSize, selectedColor);
+            Toast.show({
+              type: 'success',
+              text1: 'Added to Cart!',
+              text2: `${item.title} (${selectedSize}) added successfully.`,
+              position: 'bottom',
+              visibilityTime: 3000,
+            });
+          } else {
+            Toast.show({
+              type: 'error',
+              text1: 'Selection Required',
+              text2: 'Please select both size and color.',
+              position: 'bottom',
+              visibilityTime: 3000,
+            });
+          }
+        }}>
+          <Text style={styles.buttonText}> Add to Cart </Text>
+        </TouchableOpacity >
+      </ScrollView>
     </LinearGradient>
 
 
@@ -77,6 +109,7 @@ const styles = StyleSheet.create({
   coverImage: {
     width: '100%',
     height: 430,
+    resizeMode: 'cover',
   },
   descriptionContainer: {
     flexDirection: 'row',
@@ -137,5 +170,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10
   },
+  button: {
+    backgroundColor: "#eb7474",
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 20,
+    marginVertical: 20,
+  },
 
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  }
 })

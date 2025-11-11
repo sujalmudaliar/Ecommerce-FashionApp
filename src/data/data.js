@@ -50,7 +50,7 @@ const data = [
   {
     id: 9,
     image: require("../assets/yellow.jpg"),
-    title: "Mustard Power SUit",
+    title: "Mustard Power Suit",
     price: 19.99
   },
   {

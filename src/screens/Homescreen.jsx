@@ -17,6 +17,37 @@ const Homescreen = ({ navigation }) => {
 
   const [selectedCategory, setSelectedCategory] = useState("Mens");
 
+  const getFilteredProducts = () => {
+    if (selectedCategory === 'Trending Now') {
+      return products.filter(item =>
+        item.image === require('../assets/linen.jpg') ||
+        item.image === require('../assets/bluesaree.jpg') ||
+        item.image === require('../assets/denim.jpg') ||
+        item.image === require('../assets/red.jpg')
+      );
+    } else if (selectedCategory === 'Mens') {
+      return products.filter(item =>
+        item.image === require('../assets/denim.jpg') ||
+        item.image === require('../assets/vj.jpg') ||
+        item.image === require('../assets/linen.jpg') ||
+        item.image === require('../assets/casualman.jpg') ||
+        item.image === require('../assets/shirt.jpg') ||
+        item.image === require('../assets/hatmen.jpg')
+      );
+    } else if (selectedCategory === 'Womens') {
+      return products.filter(item =>
+        item.image !== require('../assets/denim.jpg') &&
+        item.image !== require('../assets/vj.jpg') &&
+        item.image !== require('../assets/linen.jpg') &&
+        item.image !== require('../assets/casualman.jpg') &&
+        item.image !== require('../assets/shirt.jpg') &&
+        item.image !== require('../assets/hatmen.jpg')
+      );
+    } else {
+      return products; // Best Sellers or default
+    }
+  };
+
   // const [likedItems, setLikedItems] = useState(new Array(data.length).fill(false));
 
   const handleLiked = (item)=>{
@@ -82,11 +113,11 @@ const Homescreen = ({ navigation }) => {
       />
     </>
   }
-  data={products}
+  data={getFilteredProducts()}
   renderItem={({ item,index }) => <ProductCard item={item} handleLiked={handleLiked} navigation={navigation} />}
   showsVerticalScrollIndicator={false}
   contentContainerStyle={{ paddingBottom: 100 }}
-  // keyExtractor={(item, index) => index.toString()}
+  keyExtractor={(item, index) => item.id.toString()}
 />
           {/* <View style={{ flexDirection: "row" }}
          >
@@ -117,7 +148,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     marginTop: 18,
     marginBottom: 18,
-    color: '#222',
+    color: '#000',
     letterSpacing: 0.5,
     alignSelf: 'center',
   },

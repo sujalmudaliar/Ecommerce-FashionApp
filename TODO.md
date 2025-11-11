@@ -1,4 +1,25 @@
-- [x] Fix trailing comma in useState import in ProductCard.jsx
-- [x] Fix mismatched closing tag for TouchableOpacity in ProductCard.jsx
-- [x] Wrap inputContainer in Fragment and move to ListHeaderComponent in products FlatList
-- [x] Fix renderItem in products FlatList to render ProductCard properly
+# TODO: Integrate Supabase Authentication
+
+- [x] Install @supabase/supabase-js package
+- [x] Create src/services/supabase.js to initialize Supabase client
+- [x] Create src/context/AuthContext.js for authentication state management
+- [x] Update src/screens/LoginScreen.jsx to handle login via Supabase
+- [x] Update src/screens/SignupScreen.jsx to handle signup via Supabase
+- [x] Update App.jsx to import LoginScreen and SignupScreen, wrap with AuthProvider, and conditionally render based on auth state
+- [x] Configure deep linking for email verification
+- [x] Test the authentication flow (login, signup, logout)
+- [x] Update app name and icon to DripHouse branding
+- [x] Design AccountScreen with user welcome and info
+- [x] Update LoginScreen styling (white background, pink text)
+- [x] Update SignupScreen styling (white background, pink text)
+- [x] Update Homescreen title color to match theme
+- [x] Redesign AccountScreen with 4 menu items (Orders, Buy Again, Account, Change Address)
+- [x] Use username from signup form in AccountScreen display
+- [x] Add toast notifications for each menu item in AccountScreen
+- [x] Replace "Change Address" with "Liked" menu item
+- [x] Implement persistent login - skip login screen after first login
+- [x] Update AccountScreen text colors (username to black, email to dark grey)
+- [x] Install @react-native-async-storage/async-storage package
+- [x] Implement persistent cart storage per user
+- [x] Fix navigation to redirect to HOME screen after login instead of CART
+- [x] Fix username display to show email prefix when full_name is not available

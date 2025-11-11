@@ -1,0 +1,73 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/bluesaree.jpg",
+      "sha1": "3965fb08bbeb07fdda729b3086df2fab27d0f760"
+    },
+    {
+      "path": "src/assets/buisness.jpg",
+      "sha1": "441c220ec9466d53e4baf8b7cbcbc9d9c0f07a48"
+    },
+    {
+      "path": "src/assets/casualman.jpg",
+      "sha1": "df4e0bc71e48118a8db4cdb99c8e2c439194f2ba"
+    },
+    {
+      "path": "src/assets/croptop.jpg",
+      "sha1": "8f54f3017b1bc91490921afa28446664dac3ce4a"
+    },
+    {
+      "path": "src/assets/denim.jpg",
+      "sha1": "61fbab15103308391e561b8bd0bf84ebf72b88ca"
+    },
+    {
+      "path": "src/assets/hat.jpg",
+      "sha1": "1dbe8dcf543631370a4e5723bb5e017c2dcaff51"
+    },
+    {
+      "path": "src/assets/hatmen.jpg",
+      "sha1": "61de5161f2983ee37fa3fd51268cd469dd4f0eed"
+    },
+    {
+      "path": "src/assets/jersey.jpg",
+      "sha1": "731b3077abdfc0598ea6b15f319128471e0f3749"
+    },
+    {
+      "path": "src/assets/linen.jpg",
+      "sha1": "649ff7afdafe06276a509ae165fef24f19b11449"
+    },
+    {
+      "path": "src/assets/menuIcon.png",
+      "sha1": "0f9067a213d6d9ca30956773ddb7f825191eef7f"
+    },
+    {
+      "path": "src/assets/red.jpg",
+      "sha1": "e0d4f644d6f1aa608a38f11f5c4ac7c9d0e8a0b5"
+    },
+    {
+      "path": "src/assets/shirt.jpg",
+      "sha1": "5df8dd0b5be2807765524cfdb4d7e14127f8f854"
+    },
+    {
+      "path": "src/assets/spalsh.png",
+      "sha1": "cd76a897c709997cb001f1b46e9d07794b480b59"
+    },
+    {
+      "path": "src/assets/userIcon.png",
+      "sha1": "6fb21921d9a096c455264ef17382b1cdea5ac800"
+    },
+    {
+      "path": "src/assets/vj.jpg",
+      "sha1": "7fd3dc2ee54e74225138d8fcd0b739ba9c63ba27"
+    },
+    {
+      "path": "src/assets/yellow.jpg",
+      "sha1": "71a54f185a9b7dd72ee2c136ab5c39f70585fae3"
+    },
+    {
+      "path": "src/assets/youngw.jpg",
+      "sha1": "3000cd89066d32e9105925d81829458b7f2aa16f"
+    }
+  ]
+}

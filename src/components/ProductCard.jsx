@@ -6,8 +6,8 @@ import { useState } from 'react'
 
 const ProductCard = ({ item, handleLiked, navigation }) => {
 
-// const isLiked = true;
-// const [isLiked, setIsLiked] = useState(false);
+    // const isLiked = true;
+    // const [isLiked, setIsLiked] = useState(false);
 
     return (
         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('ProductDetail', { item })}>
@@ -20,7 +20,7 @@ const ProductCard = ({ item, handleLiked, navigation }) => {
                 <Text style={styles.price}> ${item.price} </Text>
             </View>
 
-            <TouchableOpacity onPress={()=> {
+            <TouchableOpacity onPress={() => {
                 handleLiked(item);
             }} style={styles.heartContainer}>
                 {item.isLiked ? (
@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        marginTop:15,
-        paddingLeft:10,
+        marginTop: 15,
+        paddingLeft: 10,
         paddingBottom: 20,
-        position:'relative',
+        position: 'relative',
     },
 
     title: {
@@ -66,20 +66,20 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
 
-    content:{
-        paddingLeft:10,
+    content: {
+        paddingLeft: 10,
     },
 
-    heartContainer:{
-        height:30,
-        width:30,
-        backgroundColor:'#fff',
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:20,
-        position:'absolute',
-        top:20,
-        right:30,
+    heartContainer: {
+        height: 30,
+        width: 30,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        position: 'absolute',
+        top: 20,
+        right: 30,
     }
 
 })
