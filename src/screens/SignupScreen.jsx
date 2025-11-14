@@ -45,7 +45,7 @@ const SignupScreen = ({ navigation }) => {
         text1: 'Signup Successful',
         text2: 'You can now login with your credentials',
       })
-      navigation.navigate('Login')
+      navigation.pop('Login')
     }
   }
 

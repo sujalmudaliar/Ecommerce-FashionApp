@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#aaa"
+        placeholderTextColor="#343232ff"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#aaa"
+        placeholderTextColor="#343232ff"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
@@ -66,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>{loading ? 'Logging in...' : 'Login'}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+      <TouchableOpacity onPress={() => navigation.push('Signup')}>
         <Text style={styles.switchText}>
           Don’t have an account? <Text style={styles.switchLink}>Sign up</Text>
         </Text>
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
+    color:'#000',
     backgroundColor: '#f8f8f8',
     padding: 15,
     borderRadius: 10,

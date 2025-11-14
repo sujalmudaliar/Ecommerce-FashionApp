@@ -1,9 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useAuth } from '../context/AuthContext'
-import Header from '../components/Header'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import LinearGradient from 'react-native-linear-gradient'
 import Toast from 'react-native-toast-message'
+import Header from '../components/Header'
 
 const AccountScreen = () => {
   const { user, signOut } = useAuth()
@@ -59,8 +61,9 @@ const AccountScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Header />
+    <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
+     <Header/>
+
       <View style={styles.body}>
         <View style={styles.welcomeSection}>
           <Text style={styles.welcomeTitle}>Welcome Back! 👋</Text>
@@ -94,15 +97,60 @@ const AccountScreen = () => {
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   )
 }
 
 export default AccountScreen
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  body: { flex: 1, paddingHorizontal: 25, paddingTop: 20 },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  // Header Styles (matching Header component)
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+  },
+  leftSection: {
+    width: 44,
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  centerSection: {
+    flex: 1,
+  },
+  rightSection: {
+    width: 44,
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  menu: {
+    width: 24,
+    height: 24,
+  },
+  userIcon: {
+    width: 32,
+    height: 32,
+  },
+  menuIconContainer: {
+    height: 44,
+    width: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // Body Styles
+  body: { 
+    flex: 1, 
+    paddingHorizontal: 25, 
+    paddingTop: 20 
+  },
   welcomeSection: {
     alignItems: 'center',
     marginBottom: 40,

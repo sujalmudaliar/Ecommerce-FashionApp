@@ -9,6 +9,7 @@ import data from '../data/data'
 import { useState } from 'react'
 
 
+
 const catagories = ['Trending Now', 'Best Sellers', 'Mens', 'Womens']
 
 const Homescreen = ({ navigation }) => {
@@ -75,8 +76,10 @@ const Homescreen = ({ navigation }) => {
       >
           <Header />
         
-        
-       
+       <View>
+        <TextInput style={styles.input} placeholder="Search for products" placeholderTextColor="#b0b0b0" />
+        </View> 
+     
 
 
 
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.07,
     shadowRadius: 4,
     elevation: 3,
-    width: '100%',
+    width: '95%',
     maxWidth: 400,
   },
   input: {
@@ -188,7 +191,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    
   },
   comingSoon: {
     fontSize: 16,
